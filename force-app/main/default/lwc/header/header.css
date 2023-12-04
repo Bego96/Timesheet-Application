@@ -1,0 +1,24 @@
+.header-upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 30px;
+}
+
+.searchIcon {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    --slds-c-icon-color-foreground-default: rgb(172, 172, 172);
+}
+
+
+.searchInput {
+    position: relative; 
+}
+
+.slds-input {
+    width: 340px;
+}
+
+

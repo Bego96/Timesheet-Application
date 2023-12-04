@@ -1,0 +1,17 @@
+.existingTasks {
+    position: absolute;
+    top: 35px;
+    width: inherit;
+    background-color: white;
+    padding: 20px;
+    width: 100%;
+    box-shadow: 0 5px 10px rgb(0 0 0 / 0.2);
+}
+
+.existingTasks.slds-select {
+    width: 100%;
+}
+
+.optionSelect {
+    cursor: pointer;
+}

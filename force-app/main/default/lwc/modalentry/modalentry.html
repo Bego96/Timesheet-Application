@@ -1,0 +1,46 @@
+<template>
+    <section role="dialog" tabindex="-1" aria-modal="true" aria-labelledby="modal-heading-01" class="slds-modal slds-fade-in-open slds-modal_small">
+        <div class="slds-modal__container">
+            <button onclick={closeEntryModal} class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse">
+                <lightning-icon class="icon" variant="bare" size="medium" icon-name="utility:close" alternative-text="Close modal" title="Close modal"></lightning-icon>
+                <span class="slds-assistive-text">Cancel and close</span>
+            </button>
+            <div class="slds-modal__header">
+                <h1 id="modal-heading-01" class="slds-modal__title slds-hyphenate">New Entry</h1>
+            </div>
+            <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="text-input-id-1300" placeholder="Project name" class="slds-input"/>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="date" id="text-input-id-1301" placeholder="Date" class="slds-input"/>
+                </div>
+                <div style="margin-bottom: 20px; position:relative">
+                    <input type="text" id="text-input-id-1302" placeholder="Task" class="slds-input" value={pickedValue} onclick={taskList}/>
+                    <div if:true={tasksList} class="existingTasks" ref={tasksRef}>
+                        <p style="margin-bottom: 20px">Choose existing task?</p>
+                        <select class="slds-select" id="select-01" onchange={pickValue}>
+                            <template for:each={tasksList} for:item="task">
+                                <option key={task.key} value={task.name}>{task.name}</option>
+                            </template>
+                        </select>
+                    </div>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="text" id="text-input-id-1303" placeholder="Task description" class="slds-input"/>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <input type="time" id="text-input-id-1304" placeholder="Start Hours" class="slds-input"/>
+                </div>
+                <div>
+                    <input type="time" id="text-input-id-1305" placeholder="End hours" class="slds-input" />
+                </div>
+            </div>
+            <div class="slds-modal__footer">
+                <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={closeEntryModal}>Cancel</button>
+                <button class="slds-button slds-button_brand">Save</button>
+            </div>
+        </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open" role="presentation"></div>
+</template>

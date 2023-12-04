@@ -1,0 +1,17 @@
+<template>
+    <div class="header-upper">
+        <div>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right searchInput">
+                    <lightning-icon icon-name="utility:search" alternative-text="Search" size="x-small" title="medium size" class="searchIcon">
+                    </lightning-icon>
+                  <input type="text" id="text-input-id-47" placeholder="Search" class="slds-input" />
+                </div>
+              </div>
+        </div>
+        <div class="openCalendar">
+            <lightning-input type="date" name="input" variant="label-hidden"></lightning-input>
+        </div>
+    </div>
+    <c-navigation onnewentrymodal={newEntryModal}></c-navigation>
+</template>

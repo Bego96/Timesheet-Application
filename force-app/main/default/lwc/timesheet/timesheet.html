@@ -1,0 +1,7 @@
+<template>
+    <div class="container">
+        <c-header onentrymodal={entryModal}></c-header>
+        <c-project></c-project>
+        <c-modalentry if:true={newEntryModal} oncloseentrymodal={closeEntryModal}></c-modalentry>
+    </div>
+</template>

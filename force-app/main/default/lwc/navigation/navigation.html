@@ -1,0 +1,28 @@
+<template>
+    <div class="navigation">
+        <c-filters></c-filters>
+        <div class="filters-right">
+            <div class="filter">
+                <button type="button" class="filterButton" onclick={openFilter}>
+                    <lightning-button-icon variant="bare" size="large" style="margin-right: 10px;"
+                        icon-name="utility:filter"
+                        alternative-text="Filter"
+                        title="Filter"
+                        label="Filter"
+                        
+                    ></lightning-button-icon>
+                    Filter</button>
+                    <div if:true={filterToggle} class="filterPopup">
+                        <ul>
+                            <li>Project</li>
+                            <li>Total hours</li>
+                            <li>Date</li>
+                        </ul>
+                    </div>
+            </div>
+            <div class="newEntryButton">
+                <button class="slds-button slds-button_brand" onclick={addNewEntry}>New Entry</button>
+            </div>
+        </div>
+    </div>
+</template>
