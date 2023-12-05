@@ -30,6 +30,13 @@ export default class Filters extends LightningElement {
     }
 
     chooseDay(day) {
-        console.log("Day: " + day);
+        console.log("From Filter Day: " + day);
+        const newEvent = new CustomEvent('chosenday', {
+            detail: day
+        });
+
+        this.dispatchEvent(newEvent);
     }
+
+
 }

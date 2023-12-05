@@ -23,4 +23,13 @@ export default class Header extends LightningElement {
         this.dispatchEvent(newEvent);
     }
 
+    chosenDay(event) {
+        console.log("From header Day: " + event.detail);
+        const newEvent = new CustomEvent('chosenday', {
+            detail: event.detail
+        });
+
+        this.dispatchEvent(newEvent);
+    }
+
 }

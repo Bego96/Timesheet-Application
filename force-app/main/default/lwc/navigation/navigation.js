@@ -16,4 +16,13 @@ export default class Navigation extends LightningElement {
 
         this.dispatchEvent(event);
     }
+
+    chosenDay(event) {
+        console.log("From navigation Day: " + event.detail);
+        const newEvent = new CustomEvent('chosenday', {
+            detail: event.detail
+        });
+
+        this.dispatchEvent(newEvent);
+    }
 }
