@@ -17,22 +17,23 @@
                 <p>Total Hours</p>
             </div>
         </div>
-        <div class="tableData tableRow">
-            <div>
-                <p>Project X</p>
-            </div>
-            <div>
-                <p>7.11.2023.</p>
-            </div>
-            <div>
-                <p>Client meeting</p>
-            </div>
-            <div>
-                <p>Discussed project requirements</p>
-            </div>
-            <div>
-                <p>3.5 hours</p>
-            </div>
+        
+        <div class="tableData tableRow" for:each={projects} for:item="project" key={project.Id}>
+                <div>
+                    <p>{project.Name}</p>
+                </div>
+                <div>
+                    <p>{project.Date__c}</p>
+                </div>
+                <div>
+                    <p>{project.Project_Task__r.Name}</p>
+                </div>
+                <div>
+                    <p>{project.Project_Task__r.Task_Description__c}</p>
+                </div>
+                <div>
+                    <p>{project.Total_Hours__c}</p>
+                </div>
         </div>
     </div>
 </template>

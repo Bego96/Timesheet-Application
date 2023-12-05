@@ -1,17 +1,17 @@
-import { LightningElement, wire } from 'lwc';
+import { LightningElement, wire, track } from 'lwc';
 import getProjectList from '@salesforce/apex/getProjects.getProjectList';
 
 export default class Project extends LightningElement {
 
-    name;
+    @track projects;
 
     @wire(getProjectList)
     projects({ error, data }) {
         if (data) {
-            this.name = data[0].Name + " " + data[0].Project_Task__r.Task_Description__c;
+            this.projects = data;
 
             console.log(data);
-            console.log(this.name);
+            console.log(this.projects);
         } else if (error) {
             console.log(error);
         }
