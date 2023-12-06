@@ -16,17 +16,24 @@
                     <input type="date" id="text-input-id-1301" placeholder="Date" class="slds-input"/>
                 </div>
                 <div style="margin-bottom: 20px; position:relative">
-                    <input type="text" id="text-input-id-1302" placeholder="Task" class="slds-input" value={pickedValue} onclick={taskList}/>
-                    <div if:true={tasksList} class="existingTasks" ref={tasksRef}>
-                        <p style="margin-bottom: 20px">Choose existing task?</p>
-                        <select class="slds-select" id="select-01" onchange={pickValue}>
+                    <div style="display: flex;">
+                        <input type="text" id="text-input-id-1302" placeholder="Task" class="slds-input" value={pickedValue} onclick={taskList}/>
+                        <lightning-button-icon  if:true={pickedValue} icon-name="utility:close"   alternative-text="Remove value" class={margin} title="Remove value" onclick={resetTaskValue}></lightning-button-icon>
+                    </div>
+                    <div if:true={showTaskList} class="existingTasks" ref={tasksRef}>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 20px">
+                            <p>Choose existing task?</p>
+                            <lightning-button-icon  icon-name="utility:close"  alternative-text="Close" title="Close" onclick={closeTasksList}></lightning-button-icon>
+                        </div>
+    
+                        <select class="slds-select" id="select-01" onchange={pickTaskValue}>
                             <template for:each={tasksList} for:item="task">
-                                <option key={task.key} value={task.name}>{task.name}</option>
+                                <option key={task.Id} value={task.Name}>{task.Name}</option>
                             </template>
                         </select>
                     </div>
                 </div>
-                <div style="margin-bottom: 20px;">
+                <div style="margin-bottom: 20px;" if:false={pickedValue}>
                     <input type="text" id="text-input-id-1303" placeholder="Task description" class="slds-input"/>
                 </div>
                 <div style="margin-bottom: 20px;">
