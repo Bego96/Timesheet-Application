@@ -25,4 +25,16 @@ public with sharing class getProjects {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Project_Task__c> getListOfTasks(){
+        try {
+            return [
+                SELECT Id, Name, Task_Description__c 
+                FROM Project_Task__c
+            ];
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }
