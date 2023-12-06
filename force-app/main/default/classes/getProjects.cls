@@ -4,7 +4,10 @@ public with sharing class getProjects {
     @AuraEnabled(cacheable=true)
     public static List<Project__c> getProjectList() {
         try {
-            return [SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c FROM Project__c];
+            return [SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c, CreatedDate 
+            FROM Project__c 
+            WHERE CreatedDate >= LAST_N_DAYS:30 
+            ORDER BY CreatedDate DESC];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -19,8 +22,10 @@ public with sharing class getProjects {
             WHERE DAY_IN_WEEK(Date__c) =: day
             ];
 
-
-        return projects;
+            
+        return [SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c
+            FROM Project__c
+        ];
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -37,4 +42,44 @@ public with sharing class getProjects {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled
+public static Project__c createNewProject(String projectName, String taskName, String taskDescription, Date dateOfProject, Decimal totalHours){
+    try {
+        Project__c newProject = new Project__c();
+        Project_Task__c existingTask;
+
+        // Query for an existing project task
+        List<Project_Task__c> existingTasks = [SELECT Id, Name, Task_Description__c FROM Project_Task__c WHERE Name = :taskName LIMIT 1];
+
+        // If the task exists, link it to the new project
+        if (!existingTasks.isEmpty()) {
+            existingTask = existingTasks[0];
+        } else {
+            // If the task does not exist, create a new task
+            Project_Task__c newProjectTask = new Project_Task__c();
+            newProjectTask.Name = taskName;
+            newProjectTask.Task_Description__c = taskDescription;
+            insert newProjectTask; // Insert the new task to get the Id
+            existingTask = newProjectTask;
+        }
+
+        // Set project details
+        newProject.Name = projectName;
+        newProject.Project_Task__c = existingTask.Id;
+        newProject.Date__c = dateOfProject;
+        newProject.Total_Hours__c = totalHours;
+
+        // Insert the new project
+        insert newProject;
+        // Log information to debug logs
+        System.debug('Project created successfully: ' + newProject.Name);
+        return newProject;
+
+    } catch (Exception e) {
+        throw new AuraHandledException(e.getMessage());
+    }
+}
+
+    
 }

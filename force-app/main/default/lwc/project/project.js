@@ -7,7 +7,7 @@ export default class Project extends LightningElement {
     @track projects;
 
     @wire(getProjectList)
-    projects({ error, data }) {
+    projectsList({ error, data }) {
         if (data) {
             this.projects = data;
 
@@ -29,4 +29,6 @@ export default class Project extends LightningElement {
             console.log(error);
         }
     }
+
+
 }

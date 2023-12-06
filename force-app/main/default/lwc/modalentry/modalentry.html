@@ -10,14 +10,14 @@
             </div>
             <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
                 <div style="margin-bottom: 20px;">
-                    <input type="text" id="text-input-id-1300" placeholder="Project name" class="slds-input"/>
+                    <input type="text" id="text-input-id-1300" placeholder="Project name" class="slds-input" value={project.name} onchange={handleProjectName}/>
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <input type="date" id="text-input-id-1301" placeholder="Date" class="slds-input"/>
+                    <input type="date" id="text-input-id-1301" placeholder="Date" class="slds-input" value={project.date} onchange={handleDate}/>
                 </div>
                 <div style="margin-bottom: 20px; position:relative">
                     <div style="display: flex;">
-                        <input type="text" id="text-input-id-1302" placeholder="Task" class="slds-input" value={pickedValue} onclick={taskList}/>
+                        <input type="text" id="text-input-id-1302" placeholder="Task" class="slds-input" value={task.taskName} onclick={taskList} onchange={handleTaskName}/>
                         <lightning-button-icon  if:true={pickedValue} icon-name="utility:close"   alternative-text="Remove value" class={margin} title="Remove value" onclick={resetTaskValue}></lightning-button-icon>
                     </div>
                     <div if:true={showTaskList} class="existingTasks" ref={tasksRef}>
@@ -26,7 +26,7 @@
                             <lightning-button-icon  icon-name="utility:close"  alternative-text="Close" title="Close" onclick={closeTasksList}></lightning-button-icon>
                         </div>
     
-                        <select class="slds-select" id="select-01" onchange={pickTaskValue}>
+                        <select class="slds-select" id="select-01" onchange={pickValue}>
                             <template for:each={tasksList} for:item="task">
                                 <option key={task.Id} value={task.Name}>{task.Name}</option>
                             </template>
@@ -34,18 +34,18 @@
                     </div>
                 </div>
                 <div style="margin-bottom: 20px;" if:false={pickedValue}>
-                    <input type="text" id="text-input-id-1303" placeholder="Task description" class="slds-input"/>
+                    <input type="text" id="text-input-id-1303" placeholder="Task description" class="slds-input" value={task.taskDescription} onchange={handleTaskDescription}/>
                 </div>
                 <div style="margin-bottom: 20px;">
-                    <input type="time" id="text-input-id-1304" placeholder="Start Hours" class="slds-input"/>
+                    <input type="time" id="text-input-id-1304" placeholder="Start Hours" class="slds-input" value={project.startHours} onchange={handleStartHours}/>
                 </div>
                 <div>
-                    <input type="time" id="text-input-id-1305" placeholder="End hours" class="slds-input" />
+                    <input type="time" id="text-input-id-1305" placeholder="End hours" class="slds-input" value={project.endHours} onchange={handleEndHours}/>
                 </div>
             </div>
             <div class="slds-modal__footer">
                 <button class="slds-button slds-button_neutral" aria-label="Cancel and close" onclick={closeEntryModal}>Cancel</button>
-                <button class="slds-button slds-button_brand">Save</button>
+                <button class="slds-button slds-button_brand" onclick={submit}>Save</button>
             </div>
         </div>
     </section>

@@ -17,24 +17,24 @@
                 <p>Total Hours</p>
             </div>
         </div>
-    
-        <div class="tableData tableRow" for:each={projects} for:item="project" key={project.Id}>
-            <div>
-                <p>{project.Name}</p>
+        <template for:each={projects} for:item="project" for:index="index">
+            <div class="tableData tableRow" key={project.Id}>
+                <div>
+                    <p>{project.Name}</p>
+                </div>
+                <div>
+                    <p>{project.Date__c}</p>
+                </div>
+                <div>
+                    <p>{project.Project_Task__r.Name}</p>
+                </div>
+                <div>
+                    <p>{project.Project_Task__r.Task_Description__c}</p>
+                </div>
+                <div>
+                    <p>{project.Total_Hours__c}</p>
+                </div>
             </div>
-            <div>
-                <p>{project.Date__c}</p>
-            </div>
-            <div>
-                <p>{project.Project_Task__r.Name}</p>
-            </div>
-            <div>
-                <p>{project.Project_Task__r.Task_Description__c}</p>
-            </div>
-            <div>
-                <p>{project.Total_Hours__c}</p>
-            </div>
-        </div>
-
+        </template>
     </div>
 </template>
