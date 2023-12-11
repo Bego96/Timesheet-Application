@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <c-header onentrymodal={entryModal} onchosenday={chosenDay}></c-header>
-        <c-project day={day}></c-project>
+        <c-header onentrymodal={entryModal} onchosenday={chosenDay} onchosendate={chosenDate}></c-header>
+        <c-project day={day} date={date}></c-project>
         <c-modalentry if:true={newEntryModal} oncloseentrymodal={closeEntryModal}></c-modalentry>
     </div>
 </template>
