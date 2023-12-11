@@ -10,7 +10,7 @@ import { refreshApex } from '@salesforce/apex';
 import getProjectList from '@salesforce/apex/getProjects.getProjectList';
 export default class Modalentry extends LightningElement {
     @track closeModalEntry;
-    @track tasksList = null;
+    @track tasksList;
     @track pickedValue = false;
     @track showTaskList = false;
 
@@ -30,11 +30,14 @@ export default class Modalentry extends LightningElement {
     @wire(getListOfTasks)
     listOfTasks({error, data}) {
         if (data) {
+            
             this.tasksList = data;
 
             console.log(data);
             console.log(this.tasksList);
-        } else if (error) {
+        } else if (!data) {
+            this.showTaskList = false;
+        }   else if (error) {
             console.log(error);
         }
     }
@@ -84,14 +87,22 @@ export default class Modalentry extends LightningElement {
 
     pickValue(event) {
         this.task.taskName = event.target.value;
-        this.pickedValue = true;
+    this.pickedValue = true;
+
+    // Update the input field value
+    /*const taskInput = this.template.querySelector('input[data-id="text-input-id-1302"]');
+    if (taskInput) {
+        taskInput.value = this.task.taskName;
+    }*/
     }
 
 
     taskList() {
-        this.showTaskList = !this.showTaskList;
-
-        
+        if (this.tasksList && this.tasksList.length > 0) {
+            this.showTaskList = true;
+        } else {
+            this.showTaskList = false;
+        }
         //When user clicks on task name input, he will get list of existing tasks from SF
         //so user has a choise to pick existing task instead
     }
