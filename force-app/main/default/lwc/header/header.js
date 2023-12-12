@@ -32,4 +32,13 @@ export default class Header extends LightningElement {
         this.dispatchEvent(newEvent);
     }
 
+    sortByValue(event) {
+        console.log('Im from header ' + event.detail)
+        const newEvent = new CustomEvent('chosenvalue', {
+            detail: event.detail
+        });
+
+        this.dispatchEvent(newEvent);
+    }
+
 }

@@ -25,4 +25,25 @@ export default class Navigation extends LightningElement {
 
         this.dispatchEvent(newEvent);
     }
+
+    sortByProject() {
+        this.sortByValue('project');
+    }
+
+    sortByHours() {
+        this.sortByValue('hours');
+    }
+
+    sortByDate() {
+        this.sortByValue('date');
+    }
+
+    sortByValue(value) {
+        console.log(value)
+        const newEvent = new CustomEvent('chosenvalue', {
+            detail: value
+        });
+
+        this.dispatchEvent(newEvent);
+    }
 }

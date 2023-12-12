@@ -14,9 +14,9 @@
                     Filter</button>
                     <div if:true={filterToggle} class="filterPopup">
                         <ul>
-                            <li>Project</li>
-                            <li>Total hours</li>
-                            <li>Date</li>
+                            <li onclick={sortByProject}>Project</li>
+                            <li onclick={sortByHours}>Total hours</li>
+                            <li onclick={sortByDate}>Date</li>
                         </ul>
                     </div>
             </div>

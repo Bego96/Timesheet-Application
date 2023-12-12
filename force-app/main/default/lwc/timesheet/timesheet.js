@@ -3,6 +3,7 @@ import { LightningElement, track } from 'lwc';
 export default class Timesheet extends LightningElement {
     @track newEntryModal = false;
     @track day;
+    @track valuesort;
    
     entryModal(event) {
         this.newEntryModal = event.detail;
@@ -18,5 +19,9 @@ export default class Timesheet extends LightningElement {
         console.log("Setted day value" + this.day)
     }
 
-    
+    sortByValue(event) {
+        console.log("Im from timesheet " + event.detail)
+        this.valuesort = event.detail;
+        console.log("Im setted " + this.valuesort);
+    }
 }
