@@ -1,13 +1,18 @@
 import { LightningElement, track } from 'lwc';
 
 export default class Header extends LightningElement {
-    searchValue = null;
+    @track searchValue = null;
     showDatePicker = false;
     @track entryModal = false;
 
     handleInputChange(event) {
         this.searchValue = event.target.value;
         console.log(this.searchValue);
+        const newEvent = new CustomEvent('searchvalue', {
+            detail: this.searchValue
+        });
+
+        this.dispatchEvent(newEvent);
     }
 
     toggleDatePicker() {

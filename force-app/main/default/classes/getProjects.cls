@@ -23,9 +23,7 @@ public with sharing class getProjects {
             ];
 
             
-        return [SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c
-            FROM Project__c
-        ];
+        return projects;
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -102,5 +100,23 @@ public with sharing class getProjects {
         }
     }
 
-    
+    @AuraEnabled(cacheable=true)
+    public static List<SObject> searchByValue(String searchvalue){
+        try {
+          // Your actual logic for searching by value goes here
+        List<SObject> searchResults = new List<SObject>();
+        
+        // Querying Project__c records
+        List<Project__c> projectResults = [SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c
+            FROM Project__c WHERE Name = :searchvalue OR Project_Task__r.Name = :searchvalue];
+
+        searchResults.addAll(projectResults);
+        
+        return searchResults;
+
+
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }

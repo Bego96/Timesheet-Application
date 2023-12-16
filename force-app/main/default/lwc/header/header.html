@@ -5,7 +5,7 @@
                 <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right searchInput">
                     <lightning-icon icon-name="utility:search" alternative-text="Search" size="x-small" title="medium size" class="searchIcon">
                     </lightning-icon>
-                  <input type="text" id="text-input-id-47" placeholder="Search" class="slds-input" />
+                  <input type="text" id="text-input-id-47" placeholder="Search" class="slds-input" value={searchValue} onchange={handleInputChange}/>
                 </div>
               </div>
         </div>
