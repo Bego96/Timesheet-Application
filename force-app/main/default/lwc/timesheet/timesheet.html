@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <c-header onentrymodal={entryModal} onchosenday={chosenDay} onchosenvalue={sortByValue}></c-header>
-        <c-project day={day} valuesort={valuesort}></c-project>
+        <c-header onentrymodal={entryModal} onchosenday={chosenDay} onchosenvalue={sortByValue} onsearchvalue={handleInputChange}></c-header>
+        <c-project day={day} valuesort={valuesort} searchvalue={searchvalue}></c-project>
         <c-modalentry if:true={newEntryModal} oncloseentrymodal={closeEntryModal}></c-modalentry>
     </div>
 </template>

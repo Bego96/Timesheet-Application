@@ -4,7 +4,8 @@ export default class Timesheet extends LightningElement {
     @track newEntryModal = false;
     @track day;
     @track valuesort;
-   
+    @track searchvalue;
+
     entryModal(event) {
         this.newEntryModal = event.detail;
     }
@@ -23,5 +24,11 @@ export default class Timesheet extends LightningElement {
         console.log("Im from timesheet " + event.detail)
         this.valuesort = event.detail;
         console.log("Im setted " + this.valuesort);
+    }
+
+    handleInputChange(event) {
+        this.searchvalue = event.detail;
+        console.log(event.detail);
+        
     }
 }
