@@ -4,6 +4,7 @@ export default class Header extends LightningElement {
     @track searchValue = null;
     showDatePicker = false;
     @track entryModal = false;
+    @track date = null;
 
     handleInputChange(event) {
         this.searchValue = event.target.value;
@@ -46,4 +47,14 @@ export default class Header extends LightningElement {
         this.dispatchEvent(newEvent);
     }
 
+    getDate(event) {
+        this.date = event.target.value;
+        console.log(event.target.value)
+        console.log(typeof this.date)
+        const newEvent = new CustomEvent('chosendate', {
+            detail: this.date
+        });
+
+        this.dispatchEvent(newEvent);
+    }
 }

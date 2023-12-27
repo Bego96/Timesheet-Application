@@ -10,7 +10,7 @@
               </div>
         </div>
         <div class="openCalendar">
-            <lightning-input type="date" name="input" variant="label-hidden"></lightning-input>
+            <lightning-input type="date" name="input" variant="label-hidden" value={date} onchange={getDate}></lightning-input>
         </div>
     </div>
     <c-navigation onnewentrymodal={newEntryModal} onchosenday={chosenDay} onchosenvalue={sortByValue}></c-navigation>
