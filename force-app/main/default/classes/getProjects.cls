@@ -87,10 +87,10 @@ public with sharing class getProjects {
                         FROM Project__c ORDER BY Name ASC];
             } else if (valuesort == 'hours') {
                 return [SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c
-                        FROM Project__c ORDER BY Total_Hours__c ASC];
+                        FROM Project__c ORDER BY Total_Hours__c DESC];
             } else if (valuesort == 'date') {
                 return [SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c
-                        FROM Project__c ORDER BY Date__c ASC];
+                        FROM Project__c ORDER BY Date__c DESC];
             } else {
                 // Handle invalid input
                 return null;
@@ -103,7 +103,7 @@ public with sharing class getProjects {
     @AuraEnabled(cacheable=true)
     public static List<SObject> searchByValue(String searchvalue){
         try {
-          // Your actual logic for searching by value goes here
+          
         List<SObject> searchResults = new List<SObject>();
         
         // Querying Project__c records

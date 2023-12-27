@@ -39,7 +39,7 @@
     background-color: white;
     border-radius: 4px;
     width: 230px;
-    padding: 20px;
+    padding: 5px;
     box-shadow: 0 5px 10px rgb(0 0 0 / 0.2);
 }
 
@@ -48,10 +48,17 @@
 }
 
 .filterPopup ul li:not(:last-child) {
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .filterPopup ul li:hover {
     cursor: pointer;
 }
 
+ul li {
+    padding: 15px;
+}
+
+ul li:hover {
+    background-color: rgb(238, 238, 238);
+}
