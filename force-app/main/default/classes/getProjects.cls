@@ -119,4 +119,19 @@ public with sharing class getProjects {
             throw new AuraHandledException(e.getMessage());
         }
     }
+
+    @AuraEnabled(cacheable=true)
+    public static List<Project__c> getProjectsByDate(String dateValue) {
+        try {
+            List<Project__c> projects = [
+                SELECT Id, Name, Date__c, Project_Task__r.Name, Project_Task__r.Task_Description__c, Total_Hours__c 
+                FROM Project__c
+                WHERE Date__c =: Date.valueOf(dateValue)
+            ];
+
+            return projects;
+        } catch (Exception e) {
+            throw new AuraHandledException(e.getMessage());
+        }
+    }
 }
