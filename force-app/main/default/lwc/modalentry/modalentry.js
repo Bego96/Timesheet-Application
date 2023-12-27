@@ -8,7 +8,10 @@ import getListOfTasks from '@salesforce/apex/getProjects.getListOfTasks';
 import createNewProject from '@salesforce/apex/getProjects.createNewProject';
 import { refreshApex } from '@salesforce/apex';
 import getProjectList from '@salesforce/apex/getProjects.getProjectList';
-export default class Modalentry extends LightningElement {
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
+import { NavigationMixin } from 'lightning/navigation';
+
+export default class Modalentry extends NavigationMixin(LightningElement){
     @track closeModalEntry;
     @track tasksList = null;
     @track pickedValue = false;
@@ -141,10 +144,34 @@ export default class Modalentry extends LightningElement {
            refreshApex(this.projectsToRefresh);
            this.closeEntryModal();
             console.log(result[0]);
+
+            const event = new ShowToastEvent({
+                title: 'Success!',
+                message: 'Successfully created record!',
+                variant: 'success'
+            });
+
+            // Dispatch the toast event to display the message
+            this.dispatchEvent(event);
+
+            this[NavigationMixin.Navigate]({
+                type: 'standard__namedPage',
+                attributes: {
+                    pageName: 'home'
+                }
+            });
         })
         .catch(error => {
             // Handle any error logic
             console.error('Error creating project', error);
+            const event = new ShowToastEvent({
+                title: 'Error',
+                message: 'Error creating record: ',
+                variant: 'error'
+            });
+        
+            // Dispatch the toast event to display the error message
+            this.dispatchEvent(event);
         });
     }
 }
